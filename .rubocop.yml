@@ -61,6 +61,7 @@ Lint/UselessAssignment:
   - "**/spec/**/*"
 Require/MissingRequireStatement:
   Exclude:
+  - lib/fastlane/plugin/**/*
   - "**/spec/**/*.rb"
   - "**/spec_helper.rb"
   - spaceship/lib/spaceship/babosa_fix.rb

@@ -5,7 +5,6 @@ require_relative '../helper/create_remote_config_release_package_helper'
 module Fastlane
   module Actions
     class CreateRemoteConfigReleasePackageAction < Action
-
       def self.description
         "Creates a Remote Config release package"
       end
@@ -85,7 +84,7 @@ module Fastlane
         Dir.chdir("..") do
           sh("zip -FSr provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
         end
-        UI.success "provisioning_package.zip creation Completed"
+        UI.success("provisioning_package.zip creation Completed")
       end
 
       def self.return_value
