@@ -32,11 +32,17 @@ Performance/RegexpMatch:
   Enabled: false
 Performance/StringReplacement:
   Enabled: false
+Performance/StringIdentifierArgument:
+  Enabled: false
 Style/NumericPredicate:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
 Metrics/ModuleLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Naming/VariableName:
   Enabled: false
 Naming/VariableNumber:
   Enabled: false
@@ -55,6 +61,7 @@ Lint/UselessAssignment:
   - "**/spec/**/*"
 Require/MissingRequireStatement:
   Exclude:
+  - lib/fastlane/plugin/**/*
   - "**/spec/**/*.rb"
   - "**/spec_helper.rb"
   - spaceship/lib/spaceship/babosa_fix.rb
@@ -106,6 +113,8 @@ Style/SignalException:
 Style/RedundantReturn:
   Enabled: false
 Style/IfUnlessModifier:
+  Enabled: false
+Style/RescueModifier:
   Enabled: false
 Style/AndOr:
   Enabled: true

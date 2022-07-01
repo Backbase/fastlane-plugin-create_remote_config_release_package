@@ -11,6 +11,10 @@ vendor/
 vendor
 fastlane/README.md
 fastlane/report.xml
+fastlane/.DS_Store
+.DS_Store
+.bundle
 coverage
 test-results
 .idea
+
