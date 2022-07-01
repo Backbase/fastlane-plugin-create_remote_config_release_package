@@ -17,23 +17,33 @@ Creates a Remote Config release package
 ## Example
 
 Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin.
-Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
-```ruby
-  projectName = "sample-app"
-  appTitle = "Sample Application"
-  bundleId = "com.sample.app1"
-  projectFile = "../path/to/project.xcodeproj"
-  campaignJSON = "../path/to/campaign.json"
-  parametersJSON = "../path/to/parameters.json"
+Add the gem in the Gemfile 
+```ruby 
+gem "fastlane-plugin-create_remote_config_release_package", git: "https://github.com/Backbase/fastlane-plugin-create_remote_config_release_package.git"
+```
 
-  create_remote_config_release_package(
+
+```ruby
+platform :ios do
+  lane :test do
+    projectName = "sample-app"
+    appTitle = "Sample Application"
+    bundleId = "com.sample.app1"
+    projectFile = "../path/to/project.xcodeproj"
+    campaignJSON = "../path/to/campaign.json"
+    parametersJSON = "../path/to/parameters.json"
+
+    create_remote_config_release_package(
       project_name: projectName,
       app_title: appTitle,
       bundle_id: bundleId,
       project_file_path: projectFile,
       campaign_json_path: campaignJSON,
       parameters_json_path: parametersJSON
-   )
+    )
+  end
+end
+
 ```
 **Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
 

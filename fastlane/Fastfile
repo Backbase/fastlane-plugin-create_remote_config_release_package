@@ -1,18 +1,20 @@
-lane :test do
+default_platform(:ios)
+projectName = "sample-app"
+appTitle = "Sample Application"
+bundleId = "com.sample.app1"
+projectFile = "../path/to/xcodeproj"
+campaignJSON = "../path/to/campaign.json"
+parametersJSON = "../path/to/parameters.json"
 
-    projectName = "sample-app"
-    appTitle = "Sample Application"
-    bundleId = "com.sample.app1"
-    projectFile = "../path/to/project.xcodeproj"
-    campaignJSON = "../path/to/campaign.json"
-    parametersJSON = "../path/to/parameters.json"
-
-   create_remote_config_release_package(
-      project_name: projectName,
-      app_title: appTitle,
-      bundle_id: bundleId,
-      project_file_path: projectFile,
-      campaign_json_path: campaignJSON,
-      parameters_json_path: parametersJSON
-   )
+platform :ios do
+    lane :test do
+           create_remote_config_release_package(
+              project_name: projectName,
+              app_title: appTitle,
+              bundle_id: bundleId,
+              project_file_path: projectFile,
+              campaign_json_path: campaignJSON,
+              parameters_json_path: parametersJSON
+           )
+    end
 end
