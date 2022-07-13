@@ -82,7 +82,7 @@ module Fastlane
         File.write("../manifest.json", manifestHash.to_json)
 
         Dir.chdir("..") do
-          sh("zip -FSr provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
+          sh("zip -FSr ./provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
         end
         UI.success("provisioning_package.zip creation Completed")
       end
