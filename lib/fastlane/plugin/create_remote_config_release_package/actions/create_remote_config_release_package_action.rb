@@ -94,7 +94,7 @@ module Fastlane
         end
         UI.success("provisioning_package.zip creation Completed")
 
-        sh("ls" "-l", "..")
+        sh("ls -l ..")
 
         FileUtils.mv('provisioning_package.zip', '../releases/provisioning_package.zip')
 
