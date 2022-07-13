@@ -96,7 +96,7 @@ module Fastlane
 
         sh("ls -l ..")
 
-        FileUtils.mv('provisioning_package.zip', '../releases/provisioning_package.zip')
+        FileUtils.mv('../provisioning_package.zip', './releases/provisioning_package.zip')
 
       end
 
