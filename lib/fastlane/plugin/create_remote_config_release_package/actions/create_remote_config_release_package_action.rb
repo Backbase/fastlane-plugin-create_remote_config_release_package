@@ -81,10 +81,16 @@ module Fastlane
 
         File.write("../manifest.json", manifestHash.to_json)
 
+        # Create a folder to where the provisioning package should be saved
+
+        Dir.mkdir("releases")
+
         Dir.chdir("..") do
-          sh("zip -FSr ./provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
+          sh("zip -FSr ./releases/provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
         end
         UI.success("provisioning_package.zip creation Completed")
+        
+        UI.success("Path: #{provisioning_package.zip.path}")
       end
 
       def self.return_value
