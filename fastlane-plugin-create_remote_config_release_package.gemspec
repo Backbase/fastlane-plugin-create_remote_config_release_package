@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'georgen@backbase.com'
 
   spec.summary       = 'Creates a Remote Config release package'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-create_remote_config_release_package"
+  spec.homepage      = "https://github.com/Backbase/fastlane-plugin-create_remote_config_release_package"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
