@@ -85,13 +85,11 @@ module Fastlane
         Dir.chdir("..") do
           sh("zip -FSr provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
         end
-        
         UI.success("provisioning_package.zip creation Completed")
 
         FileUtils.mv('../provisioning_package.zip', './releases/provisioning_package.zip')
 
         UI.success("provisioning_package.zip has been moved to releases folder successfully")
-
       end
 
       def self.return_value
