@@ -80,10 +80,7 @@ module Fastlane
         File.write("../manifest.json", manifestHash.to_json)
 
         # Create a folder to where the provisioning package should be saved
-
-        if !Dir.exist?("releases") 
-          FileUtils.mkdir_p("releases")
-        end
+        FileUtils.mkdir_p("releases") unless Dir.exist?("releases")
         
         Dir.chdir("..") do
           sh("zip -FSr provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
