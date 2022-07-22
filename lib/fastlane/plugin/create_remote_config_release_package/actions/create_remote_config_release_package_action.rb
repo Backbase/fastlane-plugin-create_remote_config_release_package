@@ -23,20 +23,18 @@ module Fastlane
 
         locale_regexp = /^[A-Za-z]{2,3}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$/
 
-        if File.file?(campaignJSON)
-          campaign_hash = begin
-            JSON.parse(File.read(campaignJSON))
-          rescue StandardError
-            nil
-          end
+        campaignJSONfilePath = File.expand_path(campaignJSON)
+        campaign_hash = begin
+          JSON.parse(File.read(campaignJSONfilePath))
+        rescue StandardError
+          nil
         end
 
-        if File.file?(parametersJSON)
-          parameters_hash = begin
-            JSON.parse(File.read(parametersJSON))
-          rescue StandardError
-            nil
-          end
+        parameterJSONfilePath = File.expand_path(parametersJSON)
+        parameters_hash = begin
+          JSON.parse(File.read(parameterJSONfilePath))
+        rescue StandardError
+          nil
         end
 
         project = Xcodeproj::Project.open(projectFile)
