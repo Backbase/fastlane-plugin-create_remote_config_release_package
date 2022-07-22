@@ -81,8 +81,7 @@ module Fastlane
 
         # Create a folder to where the provisioning package should be saved
 
-        if Dir.exist?("releases")
-        else 
+        if !Dir.exist?("releases") 
           FileUtils.mkdir_p("releases")
         end
         
