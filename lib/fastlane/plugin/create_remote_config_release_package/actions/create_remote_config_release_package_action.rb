@@ -23,20 +23,18 @@ module Fastlane
 
         locale_regexp = /^[A-Za-z]{2,3}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$/
 
-        if File.file?(campaignJSON)
-          campaign_hash = begin
-            JSON.parse(File.read(campaignJSON))
-          rescue StandardError
-            nil
-          end
+        campaignJSONfilePath = File.expand_path(campaignJSON)
+        campaign_hash = begin
+          JSON.parse(File.read(campaignJSONfilePath))
+        rescue StandardError
+          nil
         end
 
-        if File.file?(parametersJSON)
-          parameters_hash = begin
-            JSON.parse(File.read(parametersJSON))
-          rescue StandardError
-            nil
-          end
+        parameterJSONfilePath = File.expand_path(parametersJSON)
+        parameters_hash = begin
+          JSON.parse(File.read(parameterJSONfilePath))
+        rescue StandardError
+          nil
         end
 
         project = Xcodeproj::Project.open(projectFile)
@@ -82,12 +80,8 @@ module Fastlane
         File.write("../manifest.json", manifestHash.to_json)
 
         # Create a folder to where the provisioning package should be saved
+        FileUtils.mkdir_p("releases") unless Dir.exist?("releases")
 
-        if Dir.exist?("releases")
-        else 
-          FileUtils.mkdir_p("releases")
-        end
-        
         Dir.chdir("..") do
           sh("zip -FSr provisioning_package.zip manifest.json #{zip_name}; rm #{zip_name}; rm manifest.json; rm project.json")
         end
@@ -96,7 +90,6 @@ module Fastlane
         FileUtils.mv('../provisioning_package.zip', './releases/provisioning_package.zip')
 
         UI.success("provisioning_package.zip has been moved to releases folder successfully")
-
       end
 
       def self.return_value
