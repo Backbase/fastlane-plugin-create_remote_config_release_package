@@ -46,6 +46,8 @@ module Fastlane
           end
         end
 
+        versionNumber = other_action.get_version_number.gsub(/[^0-9]/, '').ljust(7, '0')
+
         project_hash = {
           "name" => projectName,
           "applications" => [
@@ -53,7 +55,7 @@ module Fastlane
             "title" => appTitle,
             "releases" => [
               "version" => other_action.get_version_number,
-              "versionNumber" => other_action.get_build_number,
+              "versionNumber" => versionNumber,
               "parameters" => parameters_hash || {},
               "campaignSlots" => campaign_hash || [],
               "locales" => locales
