@@ -47,7 +47,7 @@ module Fastlane
           end
         end
 
-        if targetName.blank?
+        if targetName.strip.empty?
           marketingVersion = other_action.get_version_number(xcodeproj: projectFile)
         else
           marketingVersion = other_action.get_version_number(xcodeproj: projectFile, target: targetName)
