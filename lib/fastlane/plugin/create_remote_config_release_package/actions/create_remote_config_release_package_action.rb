@@ -47,10 +47,10 @@ module Fastlane
           end
         end
 
-        unless targetName.blank?
-            marketingVersion = other_action.get_version_number(xcodeproj: projectFile, target: targetName)
+        if targetName.blank?
+          marketingVersion = other_action.get_version_number(xcodeproj: projectFile)
         else
-            marketingVersion = other_action.get_version_number(xcodeproj: projectFile)
+          marketingVersion = other_action.get_version_number(xcodeproj: projectFile, target: targetName)
         end
         versionNumber = marketingVersion.gsub(/[^0-9]/, '').ljust(7, '0')
 
