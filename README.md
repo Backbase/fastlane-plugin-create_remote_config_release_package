@@ -32,6 +32,7 @@ platform :ios do
     projectFile = "../path/to/project.xcodeproj"
     campaignJSON = "../path/to/campaign.json"
     parametersJSON = "../path/to/parameters.json"
+    targetName = "Target"
 
     create_remote_config_release_package(
       project_name: projectName,
@@ -39,7 +40,8 @@ platform :ios do
       bundle_id: bundleId,
       project_file_path: projectFile,
       campaign_json_path: campaignJSON,
-      parameters_json_path: parametersJSON
+      parameters_json_path: parametersJSON,
+      target_name: targetName
     )
   end
 end
