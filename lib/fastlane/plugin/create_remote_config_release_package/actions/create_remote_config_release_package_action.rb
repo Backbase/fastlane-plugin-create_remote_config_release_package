@@ -47,7 +47,11 @@ module Fastlane
           end
         end
 
-        marketingVersion = other_action.get_version_number(xcodeproj: projectFile, target: targetName)
+        unless targetName.blank?
+            marketingVersion = other_action.get_version_number(xcodeproj: projectFile, target: targetName)
+        else
+            marketingVersion = other_action.get_version_number(xcodeproj: projectFile)
+        end
         versionNumber = marketingVersion.gsub(/[^0-9]/, '').ljust(7, '0')
 
         project_hash = {
@@ -170,7 +174,7 @@ module Fastlane
             key: :target_name,
             env_name: "RC_TARGET",
             description: "specifies the target",
-            optional: false,
+            optional: true,
             type: String,
             verify_block: proc do |value|
               UI.user_error!("No target given, pass using `target_name: 'target_name'`") unless value && !value.empty?
