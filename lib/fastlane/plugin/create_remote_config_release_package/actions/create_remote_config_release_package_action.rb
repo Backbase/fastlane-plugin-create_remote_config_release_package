@@ -20,6 +20,7 @@ module Fastlane
         parametersJSON = params[:parameters_json_path]
         bundleId = params[:bundle_id]
         projectFile = params[:project_file_path]
+        targetName = params[:target_name]
 
         locale_regexp = /^[A-Za-z]{2,3}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$/
 
@@ -46,7 +47,8 @@ module Fastlane
           end
         end
 
-        versionNumber = other_action.get_version_number.gsub(/[^0-9]/, '').ljust(7, '0')
+        marketingVersion = other_action.get_version_number(xcodeproj: projectFile, target: targetName)
+        versionNumber = marketingVersion.gsub(/[^0-9]/, '').ljust(7, '0')
 
         project_hash = {
           "name" => projectName,
@@ -54,7 +56,7 @@ module Fastlane
             "name" => bundleId,
             "title" => appTitle,
             "releases" => [
-              "version" => other_action.get_version_number,
+              "version" => marketingVersion,
               "versionNumber" => versionNumber,
               "parameters" => parameters_hash || {},
               "campaignSlots" => campaign_hash || [],
@@ -162,6 +164,16 @@ module Fastlane
             type: String,
             verify_block: proc do |value|
               UI.user_error!("No Xcode project path given, pass using `project_file_path: 'project_file_path'`") unless value && !value.empty?
+            end
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :target_name,
+            env_name: "RC_TARGET",
+            description: "specifies the target",
+            optional: false,
+            type: String,
+            verify_block: proc do |value|
+              UI.user_error!("No target given, pass using `target_name: 'target_name'`") unless value && !value.empty?
             end
           )
         ]
