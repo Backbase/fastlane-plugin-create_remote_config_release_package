@@ -175,10 +175,7 @@ module Fastlane
             env_name: "RC_TARGET",
             description: "specifies the target",
             optional: true,
-            type: String,
-            verify_block: proc do |value|
-              UI.user_error!("No target given, pass using `target_name: 'target_name'`") unless value && !value.empty?
-            end
+            type: String
           )
         ]
       end
